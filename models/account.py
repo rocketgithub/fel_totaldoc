@@ -68,6 +68,8 @@ class AccountMove(models.Model):
                         factura.documento_xml_fel = xmls_base64
                         factura.resultado_xml_fel = resultado["xmlSigned"]
                         factura.pdf_fel = "https://print.totaldoc.io/pdf?uuid="+resultado["uuid"]
+                        if factura.company_id.pruebas_fel:
+                            factura.pdf_fel = "https://print-dev.totaldoc.io/pdf?uuid="+resultado["uuid"]
                         factura.certificador_fel = "totaldoc"
                     else:
                         factura.error_certificador(r.text)
